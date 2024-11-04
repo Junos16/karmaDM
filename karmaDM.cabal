@@ -1,0 +1,46 @@
+cabal-version:       3.0
+
+name:                karmaDM
+synopsis:            A simple resumable download manager written in Haskell
+version:             1.0.0.0
+homepage:            https://github.com/Junos16/karmaDM
+license:             MIT license
+author:              Hriddhit Datta
+maintainer:          Hriddhit Datta
+copyright:           Hriddhit Datta
+category:            Network
+build-type:          Simple
+
+library
+  hs-source-dirs:      src
+  default-language:    Haskell2021
+  exposed-modules:     Karma
+  ghc-options:         -O2 -split-sections -optl=-s -static -Wall -fno-warn-name-shadowing -XHaskell2021 
+  build-depends:       base >= 4.11 && < 5
+                     , vector
+                     , async
+                     , stm
+                     , linear-base
+                     , http-client
+                     , http-client-tls
+                     , optparse-applicative
+                     , brick
+                     , streamly
+
+executable karmaDM
+  main-is:            Main.hs
+  hs-source-dirs:     app
+  default-language:   Haskell2021
+  ghc-options:        -Wall -split-sections -optl=-s -static -threaded -rtsopts -with-rtsopts=-N -O2 -XHaskell2021
+  build-depends:      base
+                    , karmaDM
+
+test-suite karmaDM-tests
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Main.hs
+  default-language: Haskell2021
+  ghc-options:      -Wall -threaded
+  build-depends:    base >=4.11 && < 5
+                  , karmaDM
+                  , hedgehog

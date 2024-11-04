@@ -1,0 +1,6 @@
+cradle:
+  multi:
+    - path: "./src"
+      config: { cradle: { cabal: { component: "lib:karmaDM" } } }
+    - path: "./app"
+      config: { cradle: { cabal: { component: "exe:karmaDM" } } }
